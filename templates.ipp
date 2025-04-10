@@ -14,7 +14,7 @@ T input(const std::string prom = "") {
     while (!(std::cin >> param)) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << std::endl << "Input error, try again >> ";
+        std::cout << std::endl << "Input error, try again >> ";o
     }
     return param;
 }
@@ -340,7 +340,7 @@ void freeArr(T* arr) {
 }
 
 template <typename T, size_t size>
-void sortInclude(T(&arr)[size]) {
+void sortPermutations(T(&arr)[size]) {
     for (size_t n = 0; n < size - 1; n++) {
         T mn = arr[n];
         size_t idx = 0;
@@ -357,7 +357,7 @@ void sortInclude(T(&arr)[size]) {
 }
 
 template <typename T>
-void sortInclude(T(*&arr), size_t size) {
+void sortPermutations(T(*&arr), size_t size) {
     for (size_t n = 0; n < size - 1; n++) {
         T mn = arr[n];
         size_t idx = 0;

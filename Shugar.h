@@ -182,10 +182,10 @@ template <typename T>
 void freeArr(T* arr);
 
 template <typename T, size_t size>
-void sortInclude(T(&arr)[size]);
+void sortPermutations(T(&arr)[size]);
 
 template <typename T>
-void sortInclude(T(*&arr), size_t size);
+void sortPermutations(T(*&arr), size_t size);
 
 template<typename T, size_t size>
 void reverse(T(&arr)[size]);
