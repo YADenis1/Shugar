@@ -169,20 +169,24 @@ void append(T*& arr, size_t& size, T element) {
 }
 
 template <typename T, size_t size>
-auto sum(const T(&arr)[size]) {
+auto sum(const T(&arr)[size], bool(*filter)(T element) = nullptr) {
     T out = 0;
     for (size_t i = 0; i < size; i++) {
-        out += arr[i];
+        if(!filter || filter(arr[i])){
+            out += arr[i];
+        }
     }
     return out;
 }
 
 
 template <typename T>
-auto sum(const T* arr, size_t size) {
+auto sum(const T* arr, size_t size, bool(*filter)(T element) = nullptr) {
     T out = 0;
     for (size_t i = 0; i < size; i++) {
-        out += arr[i];
+        if (!filter || filter(arr[i])) {
+            out += arr[i];
+        }
     }
     return out;
 }

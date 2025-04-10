@@ -118,10 +118,10 @@ template <typename T>
 void append(T*& array, size_t& size, T element);
 
 template <typename T>
-auto sum(const T* array, size_t size);
+auto sum(const T* array, size_t size, bool(*filter)(T element));
 
 template <typename T, size_t size>
-auto sum(const T(&arr)[size]);
+auto sum(const T(&arr)[size], bool(*filter)(T element));
 
 template <typename T>
 auto sum(std::initializer_list<T>);
