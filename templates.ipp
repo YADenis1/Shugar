@@ -14,7 +14,7 @@ T input(const std::string prom = "") {
     while (!(std::cin >> param)) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << std::endl << "Input error, try again >> ";o
+        std::cout << std::endl << "Input error, try again >> ";
     }
     return param;
 }
@@ -369,6 +369,39 @@ void sortPermutations(T(*&arr), size_t size) {
         }
         if (idx != 0) {
             std::swap(arr[idx], arr[n]);
+        }
+    }
+}
+
+template <typename T, size_t size, size_t prirSize>
+void sortShell(T(&arr)[size], size_t(&prirArr)[prirSize]) {
+    for (size_t gap : prirArr) {
+        std::cout << "\n";
+        for (size_t i = gap; i < size; i++) {
+            T temp = arr[i];
+            size_t j;
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
+        }
+        /*std::cout << gap << ": ";
+        for (T el : arr) {
+            std::cout << el << " ";
+        }*/
+    }
+}
+
+template <typename T, size_t prirSize>
+void sortShell(T*& arr, size_t size, size_t(&prirArr)[prirSize]) {
+    for (size_t gap : prirArr) {
+        for (size_t i = gap; i < size; i++) {
+            T temp = arr[i];
+            size_t j;
+            for (j = i; j >= gap && arr[j - gap] > temp; j -= gap) {
+                arr[j] = arr[j - gap];
+            }
+            arr[j] = temp;
         }
     }
 }

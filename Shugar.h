@@ -29,10 +29,24 @@ long long int find(const T* arr, size_t size, T element);
 template <typename T, size_t size>
 long long int find(const T(&arr)[size], T element);
 
+/// <summary>
+/// возвращает true, если число простое 
+/// </summary>
+/// <param name="num">число</param>
+/// <returns></returns>
 bool isPrime(long long int num);
 
+/// <summary>
+/// возвращает факториал числа
+/// </summary>
+/// <param name="num">число</param>
 long long int fact(int num);
 
+/// <summary>
+/// возвращает случайное число между двумя введёнными
+/// </summary>
+/// <param name="from">1 число</param>
+/// <param name="to">2 число</param>
 template <typename T>
 T randBetween(T from, T to);
 
@@ -180,6 +194,12 @@ T* createArr(size_t, const T&);
 
 template <typename T>
 void freeArr(T* arr);
+
+template <typename T, size_t size, size_t prirSize>
+void sortShell(T(&arr)[size], size_t(&prirArr)[prirSize]);
+
+template <typename T, size_t prirSize>
+void sortShell(T*& arr, size_t size, size_t(&prirArr)[prirSize]);
 
 template <typename T, size_t size>
 void sortPermutations(T(&arr)[size]);
