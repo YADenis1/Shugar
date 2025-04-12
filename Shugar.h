@@ -110,6 +110,9 @@ void print(std::map<T, U> mp);
 template<typename T>
 void print(std::set<T> st);
 
+template<size_t size>
+void print(const char (&arr)[size]);
+
 template <typename T>
 T max(const T* arr, size_t size);
 
@@ -168,10 +171,10 @@ template <typename T>
 void fill(T*& array, size_t size, const T value);
 
 template <typename T>
-void transpose(T(&array), size_t Rows, size_t Cols);
+void transpose(T(&array), size_t rows, size_t cols);
 
 template <typename T>
-void transpose(T**& array, size_t rows, size_t cols);
+T** transpose(T**& array, size_t rows, size_t cols);
 
 template <typename size_t rows, typename size_t cols>
 void fillRadnom(int(&array)[rows][cols], int from, int to);
@@ -281,16 +284,16 @@ template <typename T>
 void fillRange(T* arr, size_t size, T start, T end, T step);
 
 template <typename T, size_t size>
-size_t count(T(&arr)[size], bool(*filterFun)());
+size_t count(T(&arr)[size], bool(*filterFun)(T num));
 
 template <typename T>
-size_t count(T* arr, bool(*filterFun)());
+size_t count(T* arr, size_t size, bool(*filterFun)(T num));
 
 template <typename T, size_t size>
 size_t count(T(&arr)[size], T elem);
 
 template <typename T>
-size_t count(T* arr, T elem);
+size_t count(T* arr, size_t size, T elem);
 
 template <typename T>
 T* range(T start, T end, T step);

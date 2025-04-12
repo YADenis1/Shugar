@@ -259,17 +259,22 @@ void transpose(T(&arr), size_t Rows, size_t Cols) {
 }
 
 template <typename T>
-void transpose(T**& arr, size_t rows, size_t cols) {
-    for (size_t i = 0; i < rows; i++) {
-        for (size_t j = i; j < cols; j++) {
-            std::swap(arr[i][j], arr[j][i]);
+T** transpose(T**& arr, size_t n, size_t m) {
+    T** out = new T* [m];
+    for (size_t i = 0; i < m; i++) {
+        out[i] = new int[n];
+    }
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < m; j++) {
+            out[j][i] = arr[i][j];
         }
     }
+
+    return out;
 }
 
 template <typename size_t rows, typename size_t cols>
 void fillRadnom(int(&arr)[rows][cols], int from, int to) {
-    std::srand(time(NULL));
     for (size_t i = 0; i < rows; i++) {
         for (size_t j = 0; j < cols; j++) {
             int value = std::rand() % (to - from) + from;
@@ -279,7 +284,6 @@ void fillRadnom(int(&arr)[rows][cols], int from, int to) {
 }
 
 void fillRadnom(int**& arr, size_t rows, size_t cols, int from, int to) {
-    std::srand(time(NULL));
     for (size_t i = 0; i < rows; i++) {
         for (size_t j = 0; j < cols; j++) {
             int value = std::rand() % (to - from) + from;
@@ -290,7 +294,6 @@ void fillRadnom(int**& arr, size_t rows, size_t cols, int from, int to) {
 
 template <typename size_t size>
 void fillRadnom(int(&arr)[size], int from, int to) {
-    std::srand(time(NULL));
     for (size_t j = 0; j < size; j++) {
         int value = std::rand() % (to - from) + from;
         arr[j] = value;
@@ -298,7 +301,6 @@ void fillRadnom(int(&arr)[size], int from, int to) {
 }
 
 void fillRadnom(int*& arr, size_t size, int from, int to) {
-    std::srand(time(NULL));
     for (size_t j = 0; j < size; j++) {
         int value = std::rand() % (to - from) + from;
         arr[j] = value;
@@ -715,7 +717,7 @@ void fillRange(T* arr, size_t size, T start, T end, T step = 1) {
 }
 
 template <typename T, size_t size>
-size_t count(T(&arr)[size], bool(*filterFun)()) {
+size_t count(T(&arr)[size], bool(*filterFun)(T num)) {
     size_t cnt = 0;
     for (size_t i = 0; i < size; i++) {
         if (filterFun(arr[i])) {
@@ -726,7 +728,7 @@ size_t count(T(&arr)[size], bool(*filterFun)()) {
 }
 
 template <typename T>
-size_t count(T* arr, bool(*filterFun)()) {
+size_t count(T* arr, size_t size, bool(*filterFun)(T num)) {
     size_t cnt = 0;
     for (size_t i = 0; i < size; i++) {
         if (filterFun(arr[i])) {
@@ -740,7 +742,7 @@ template <typename T, size_t size>
 size_t count(T(&arr)[size], T elem) {
     size_t cnt = 0;
     for (size_t i = 0; i < size; i++) {
-        if (arr[i] = e){
+        if (arr[i] = elem){
             cnt++;
         }
     }
@@ -748,10 +750,10 @@ size_t count(T(&arr)[size], T elem) {
 }
 
 template <typename T>
-size_t count(T* arr, T elem) {
+size_t count(T* arr, size_t size, T elem) {
     size_t cnt = 0;
     for (size_t i = 0; i < size; i++) {
-        if (arr[i] = e) {
+        if (arr[i] = elem) {
             cnt++;
         }
     }

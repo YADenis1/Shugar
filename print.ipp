@@ -107,3 +107,11 @@ void print(std::set<T> st) {
         }
     }
 }
+
+template<size_t size>
+void print(const char (&arr)[size]) {
+    for (size_t i = 0; i < size; i++) {
+        std::cout << arr[i];
+    }
+    std::cout << "\n";
+}
