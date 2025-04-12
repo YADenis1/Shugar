@@ -83,6 +83,9 @@ std::vector<std::string> split(std::string str, char sep) {
 			substr += element;
 		}
 	}
+	if (substr != "") {
+		out.push_back(substr);
+	}
 	return out;
 }
 
