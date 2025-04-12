@@ -280,6 +280,18 @@ void fillRange(T(&arr)[size], T start, T end, T step);
 template <typename T>
 void fillRange(T* arr, size_t size, T start, T end, T step);
 
+template <typename T, size_t size>
+size_t count(T(&arr)[size], bool(*filterFun)());
+
+template <typename T>
+size_t count(T* arr, bool(*filterFun)());
+
+template <typename T, size_t size>
+size_t count(T(&arr)[size], T elem);
+
+template <typename T>
+size_t count(T* arr, T elem);
+
 template <typename T>
 T* range(T start, T end, T step);
 

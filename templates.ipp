@@ -714,6 +714,50 @@ void fillRange(T* arr, size_t size, T start, T end, T step = 1) {
     }
 }
 
+template <typename T, size_t size>
+size_t count(T(&arr)[size], bool(*filterFun)()) {
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (filterFun(arr[i])) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+template <typename T>
+size_t count(T* arr, bool(*filterFun)()) {
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (filterFun(arr[i])) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+template <typename T, size_t size>
+size_t count(T(&arr)[size], T elem) {
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (arr[i] = e){
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
+template <typename T>
+size_t count(T* arr, T elem) {
+    size_t cnt = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (arr[i] = e) {
+            cnt++;
+        }
+    }
+    return cnt;
+}
+
 template <typename T>
 T* range(T start, T end, T step = 1) {
     size_t size = (end - start) / step;
