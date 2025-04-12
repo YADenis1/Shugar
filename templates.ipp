@@ -14,7 +14,7 @@ T input(const std::string prom = "") {
     while (!(std::cin >> param)) {
         std::cin.clear();
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cout << std::endl << "Input error, try again >> ";
+        std::cout << "\033[A\033[K" << "Input error, try again >> ";
     }
     return param;
 }
