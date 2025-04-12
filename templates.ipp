@@ -340,7 +340,7 @@ void freeArr(T* arr) {
 }
 
 template <typename T, size_t size>
-void sortPermutations(T(&arr)[size]) {
+void sortSwap(T(&arr)[size]) {
     for (size_t n = 0; n < size - 1; n++) {
         T mn = arr[n];
         size_t idx = 0;
@@ -357,7 +357,7 @@ void sortPermutations(T(&arr)[size]) {
 }
 
 template <typename T>
-void sortPermutations(T(*&arr), size_t size) {
+void sortSwap(T(*&arr), size_t size) {
     for (size_t n = 0; n < size - 1; n++) {
         T mn = arr[n];
         size_t idx = 0;
@@ -373,6 +373,98 @@ void sortPermutations(T(*&arr), size_t size) {
     }
 }
 
+template <typename T>
+void sortCount(T*& arr, size_t arrSize) {
+    T mx = arr[0], mn = arr[0];
+    for (size_t i = 1; i < arrSize; i++) {
+        mx = std::max(mx, arr[i]);
+        mn = std::min(mn, arr[i]);
+    }
+
+    const int range = mx - mn + 1;
+
+    T* count = new int[range]();
+
+    for (size_t i = 0; i < arrSize; i++) {
+        count[arr[i] - mn]++;
+    }
+    size_t index = 0;
+    for (size_t i = 0; i < range; i++) {
+        while (count[i] > 0) {
+            arr[index] = i + mn;
+            index++;
+            count[i]--;
+        }
+    }
+    delete[] count;
+}
+
+template <typename T, size_t size>
+void sortCount(T(&arr)[size]) {
+    T mx = arr[0], mn = arr[0];
+    for (size_t i = 1; i < size; i++) {
+        mx = std::max(mx, arr[i]);
+        mn = std::min(mn, arr[i]);
+    }
+
+    const int range = mx - mn + 1;
+
+    T* count = new int[range]();
+
+    for (size_t i = 0; i < size; i++) {
+        count[arr[i] - mn]++;
+    }
+    size_t index = 0;
+    for (size_t i = 0; i < range; i++) {
+        while (count[i] > 0) {
+            arr[index] = i + mn;
+            index++;
+            count[i]--;
+        }
+    }
+    delete[] count;
+}
+
+template <typename T>
+void sortQuick(T*& arr, size_t l, size_t r) {
+    if (l >= r) return;
+    T midEl = arr[(l + r) / 2];
+    size_t i = l, j = r;
+    while (i <= j) {
+        while (arr[i] < midEl) {
+            i++;
+        }
+        while (arr[j] > midEl) {
+            j--;
+        }
+        if (i <= j) {
+            std::swap(arr[i++], arr[j--]);
+        }
+    }
+    sortQuick(arr, l, j);
+    sortQuick(arr, i, r);
+}
+
+template <typename T, size_t size>
+void sortQuick(T(&arr)[size], size_t l, size_t r) {
+    if (l >= r) return;
+    T midEl = arr[(l + r) / 2];
+    size_t i = l, j = r;
+    while (i <= j) {
+        while (arr[i] < midEl) {
+            i++;
+        }
+        while (arr[j] > midEl) {
+            j--;
+        }
+        if (i <= j) {
+            std::swap(arr[i++], arr[j--]);
+        }
+    }
+    sortQuick(arr, l, j);
+    sortQuick(arr, i, r);
+}
+
 template <typename T, size_t size, size_t prirSize>
 void sortShell(T(&arr)[size], size_t(&prirArr)[prirSize]) {
     for (size_t gap : prirArr) {
@@ -385,10 +477,6 @@ void sortShell(T(&arr)[size], size_t(&prirArr)[prirSize]) {
             }
             arr[j] = temp;
         }
-        /*std::cout << gap << ": ";
-        for (T el : arr) {
-            std::cout << el << " ";
-        }*/
     }
 }
 

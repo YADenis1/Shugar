@@ -202,10 +202,22 @@ template <typename T, size_t prirSize>
 void sortShell(T*& arr, size_t size, size_t(&prirArr)[prirSize]);
 
 template <typename T, size_t size>
-void sortPermutations(T(&arr)[size]);
+void sortSwap(T(&arr)[size]);
 
 template <typename T>
-void sortPermutations(T(*&arr), size_t size);
+void sortSwap(T(*&arr), size_t size);
+
+template <typename T>
+void sortCount(T*& arr, size_t arrSize);
+
+template <typename T, size_t size>
+void sortCount(T(&arr)[size]);
+
+template <typename T>
+void sortQuick(T*& arr, size_t l, size_t r);
+
+template <typename T, size_t size>
+void sortQuick(T(&arr)[size], size_t l, size_t r);
 
 template<typename T, size_t size>
 void reverse(T(&arr)[size]);
